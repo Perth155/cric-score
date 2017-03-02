@@ -1,0 +1,19 @@
+usage : cricscore [options]
+
+
+The cricscores utility is to support the following command-line options:
+
+-a
+    Normally, all domestic games are ignored. Specifying -a requests that all entries, except domestic and international to be printed to console. 
+-c count
+    Print only the number of games specified by count, set to all live games by default if not specified.
+-t keyword
+    Only print live score of team/ tournament/ nation specified by the keyword, if found. 
+-l
+    Print the full scorecard of the game. 
+-r 
+	refresh scores every 60 seconds. Program runs continuously.  
+
+
+Note: cricscore scrapes scorecards and live game information from http://www.espncricinfo.com, however is not affiliated with ESPN cricinfo.
+Report any bugs to : 
