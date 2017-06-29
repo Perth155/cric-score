@@ -47,7 +47,7 @@ def user_opts():
 	parser.add_argument(
 				"-c", "--count",
 				type = int,
-				default = 1,
+				default = -1,
 				help="Print number of games specified by count."
 	)
 	parser.add_argument(
@@ -137,9 +137,9 @@ def main():
 
 	gameList = urlmanager.urlList(fStyle, showPastResult)
 	numberOfLiveGames = len(gameList)
-	if(options.all):
+	if(options.count == -1):
 		trim = numberOfLiveGames #showing results for all games.
-	if(options.count < numberOfLiveGames):
+	elif(options.count < numberOfLiveGames and options.count > 0):
 		trim = options.count
 	else:
 		sys.stderr.write(f.BG_RED+f.FG_WHITE+"There are live scores available for "+str(numberOfLiveGames) + " games at the moment." +
