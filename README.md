@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## Usage
 * To run the script on Linux
 ```
-cricscore [args]
+./cricscore [args]
 ```
 
 ## Optional Arguments
