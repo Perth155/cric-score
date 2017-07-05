@@ -25,7 +25,6 @@ sudo rm -rf /usr/local/bin/cricscore_bin
 echo "Uninstallation finished."
 EOF
 
-cat $installdir"uninstaller.sh"
 sudo chmod -R a+x $installdir"uninstaller.sh"
 sudo cp {./src/*.py,./src/cricscore} $installdir
 sudo chmod -R a+x $installdir"cricscore"

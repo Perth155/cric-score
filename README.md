@@ -29,14 +29,10 @@ python3 cricscore.py [args]
                         [UNIMPLEMENTED.]
 ```
 
-## Examples
-
+## Examples/Screenshots
 
 ## Installation
-* Run the shell script installer.sh
-To install cricscore (requires root previliges).
-```
-sudo ./installer.sh
-```
-Usage: cricscore [args]
-To uninstall run cricscore_uninstall
+* Run the shell script ```installer.sh```
+to install cricscore (requires root previliges).
+Usage: ```cricscore [args]```
+To uninstall run ```cricscore_uninstall```
