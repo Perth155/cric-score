@@ -3,7 +3,6 @@ import requests
 import urlmanager
 import argparse
 import fonts
-import json
 import timer
 
 global f # font class object.
@@ -42,7 +41,7 @@ def user_opts():
 	parser.add_argument(
 				"-a", "--all",
 				help="Display all live game summaries.",
-				action = "store_true",
+				action = "store_true"
 	)
 	parser.add_argument(
 				"-c", "--count",
@@ -134,12 +133,14 @@ def main():
 		fStyle = False
 	if(options.result):
 		showPastResult = True
-
 	gameList = urlmanager.urlList(fStyle, showPastResult)
 	numberOfLiveGames = len(gameList)
+	if(numberOfLiveGames == 0):
+		print("No games were retreived.")
+		sys.exit(0)
 	if(options.count == -1):
 		trim = numberOfLiveGames #showing results for all games.
-	elif(options.count < numberOfLiveGames and options.count > 0):
+	elif(options.count <= numberOfLiveGames and options.count > 0):
 		trim = options.count
 	else:
 		sys.stderr.write(f.BG_RED+f.FG_WHITE+"There are live scores available for "+str(numberOfLiveGames) + " games at the moment." +
@@ -150,7 +151,10 @@ def main():
 	else:
 		displayLiveMatchSelection(gameList)
 		matOpt = input("Select option: ")
-		startListner(gameList, matOpt)
+		if(not options.count == -1):
+			startListner(gameList, matOpt, options.count)
+		else:
+			startListner(gameList, matOpt)
 	sys.exit(0)
 
 
