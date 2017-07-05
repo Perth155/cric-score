@@ -33,7 +33,7 @@ python3 cricscore.py [args]
 
 
 ## Installation
-* Run the shell script installer.sh in the install_cricscore dir in the root dir.
+* Run the shell script installer.sh
 To install cricscore (requires root previliges).
 ```
 sudo ./installer.sh
