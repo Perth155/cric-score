@@ -4,15 +4,15 @@ Scrape live cricket results from espncricinfo
 ## Pre-requisites
 * python3 (version 3.4)
 * python3-pip
-* BeautifulSoup (package name: '''beautifulsoup'''), Alternatively:
+* BeautifulSoup (package name: ```beautifulsoup4```), Alternatively:
 ```
 pip install -r requirements.txt
 ```
 
 ## Usage
-* To run the script on Linux/ macOS
+* To run the script on Linux
 ```
-python3 cricscore.py [args]
+cricscore [args]
 ```
 
 ## Optional Arguments
