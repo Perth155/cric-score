@@ -1,4 +1,5 @@
 #!/bin/bash
+
 installdir="/usr/local/bin/cricscore_bin/"
 exedir="/usr/local/bin/"
 
@@ -26,7 +27,8 @@ echo "Uninstallation finished."
 EOF
 
 sudo chmod -R a+x $installdir"uninstaller.sh"
-sudo cp {./src/*.py,./src/cricscore} $installdir
+sudo cp ./src/*.py $installdir
+mv $installdir"cricscore.py" $installdir"cricscore"
 sudo chmod -R a+x $installdir"cricscore"
 sudo ln -sf $installdir"cricscore" $exedir"cricscore"
 sudo ln -sf $installdir"uninstaller.sh" $exedir"cricscore_uninstall"
