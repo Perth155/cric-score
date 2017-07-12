@@ -20,10 +20,15 @@ sudo mkdir -p $installdir
 
 sudo cat > $installdir"uninstaller.sh" <<- "EOF"
 #!/bin/bash
-sudo rm /usr/local/bin/cricscore
-sudo rm /usr/local/bin/cricscore_uninstall
-sudo rm -rf /usr/local/bin/cricscore_bin
-echo "Uninstallation finished."
+read -p "Do you want to permanently remove cricscore?[Y/n](default:n)" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	sudo rm /usr/local/bin/cricscore
+	sudo rm /usr/local/bin/cricscore_uninstall
+	sudo rm -rf /usr/local/bin/cricscore_bin
+	echo "Uninstallation finished."
+fi
 EOF
 
 sudo chmod -R a+x $installdir"uninstaller.sh"
