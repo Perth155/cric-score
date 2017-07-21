@@ -2,6 +2,7 @@
 Manages all the espncricinfo urls.
 Gives back either a list of strings of all match summaries
 OR - a list of all URLs if full scorecard is requested by the user.
+author : Abrar Amin (abrar.a.amin@gmail.com)
 '''
 import sys
 import requests
@@ -81,7 +82,7 @@ def summaryList(soup, numgames):
 			matchLocation = item.contents[n].find_all("a")[0].text + f.ANSI_RESET
 			matchSummaryList[index]["date"] = item.contents[n].find_all("span",{"class" : "bold"})[0].text #dates
 			matchSummaryList[index]["venue"] = re.sub("\s+"," ",matchLocation).lstrip() # venue of the game. get rid of all leading tab and newline characters.
-			matchSummaryList[index]["url"] = (BASE_URL+ item.contents[3].find_all("a")[0].get("href")) #URL to scoreboard.
+			matchSummaryList[index]["url"] = (item.contents[3].find_all("a")[0].get("href")) #URL to scoreboard.
 			n+=2
 		matchSummaryList[index]["innings1"] = f.BOLD + re.sub("\s+"," ",item.contents[n].text).lstrip() + f.ANSI_RESET  #innings 1- remove all new line characters
 		matchSummaryList[index]["innings2"] = f.BOLD + re.sub("\s+"," ",item.contents[n+2].text).lstrip() + f.ANSI_RESET # innings 2 info.

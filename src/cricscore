@@ -1,9 +1,17 @@
 #!/usr/bin/env python
+'''
+Displays the score to console according to the arguments passed by the user.
+'''
+
 import sys
+import requests
+import bs4
+import re
 import requests
 import urlmanager
 import argparse
 import fonts
+import json
 import timer
 
 global f # font class object.
@@ -78,12 +86,21 @@ def user_opts():
 
 
 
-def liveCommentry(jsonURL):
+def liveCommentry(matchURL):
 	global currentHighlight, inactivityCount
+	#print(matchURL)
 	#print(jsonURL)
-	data = urlmanager.getJSObject(jsonURL)
-	matchUrl = jsonURL[:-4]+"html"
-	display = (data["description"] +"\n"+data["match"]["current_summary"] + "\n" + data["live"]["status"] + "\n"+matchUrl+"\n\n")
+	try:
+		r = requests.get(matchURL)
+	except:
+		sys.stderr.write("Couldn't open "+matchURL)
+		return
+	text = r.text
+	soup = bs4.BeautifulSoup(text, "html.parser")
+	matchtitle = soup.find("title").text
+	# data = urlmanager.getJSObject(jsonURL)
+	#display = (data["description"] +"\n"+data["match"]["current_summary"] + "\n" + data["live"]["status"] + "\n"+matchUrl+"\n\n")
+	display = (matchtitle)
 	if(currentHighlight == display):
 		inactivityCount+=1
 		print("No updates...")
@@ -104,11 +121,10 @@ def startListner(gameList, gameIndex):
 	except:
 		sys.stderr.write("Invalid selection.\n")
 		return
-	jsonURL = matchUrl[:-4]+"json"
+	# jsonURL = matchUrl[:-4]+"json"
 	inactivityCount = 0
-
-	liveCommentry(jsonURL)
-	rt = timer.RepeatTimer(30, liveCommentry, jsonURL)
+	liveCommentry(matchUrl+".html")
+	rt = timer.RepeatTimer(30, liveCommentry, matchUrl)
 
 	inArg = input(f.BG_RED+f.FG_WHITE+"Refresh interval = 30s; Press Q to stop listner:"+f.ANSI_RESET+"\n")
 	if(inArg.lower() == 'q'):
