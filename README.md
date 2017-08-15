@@ -1,4 +1,4 @@
-# cric-score
+# cricscore
 Scrape live cricket results from espncricinfo
 
 ## Pre-requisites
@@ -28,8 +28,6 @@ pip install -r requirements.txt
   -s , --scorecard      Display full scorecard of the match(es)
                         [UNIMPLEMENTED.]
 ```
-
-## Examples/Screenshots
 
 ## Installation
 * Run the shell script ```installer.sh```
